@@ -1,0 +1,11 @@
+version: '3'                                        # docker-composeの使用バージョン
+services:                                           # コンテナから作られるサービス達。コンテナの設定を以下に。
+  apache:                                           # コンテナの名前
+    build:                                          # イメージ(コンテナのテンプレ)を作るためのDockerfileがある場所
+      context: ./docker/apache                      # Dockerfileの場所
+    ports:                                          # 公開port
+      - 80:80                                       # 外部公開ポート番号 : コンテナのポート番号
+    volumes:                                        # マウント。コンテナのデータと、手元のデータが同期する。
+      - ./web:/var/www/html/:cached                 # 手元のパス : コンテナのパス : キャッシュオプション
+
+      
